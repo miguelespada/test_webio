@@ -23,22 +23,15 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
-  function rgb2hex(rgb){
-  rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-  return (rgb && rgb.length === 4) ? "#" +
-    ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
-    ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
-    ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
-  }
 
 
   var socket = io();
 
   socket.on('chat message', function(msg){
     $('#m').html(msg);
-    $(this).css('background-color', rgb(msg, msg, msg, 1));
+    $(this).css('background-color', "#0" + parseInt(msg, 10).toString(16).slice(-2));
   });
-  
+
   window.ondeviceorientation = function(event) {
     alpha = Math.round(event.alpha);
     beta = Math.round(event.beta);
